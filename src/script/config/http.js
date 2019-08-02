@@ -18,7 +18,7 @@ export default {
     }
     return instance.request(config).then(response => {
       console.log(response.data)
-    }).catch(function (error) {
+    }).catch(error => {
       if (error.response) {
         console.log(error.response)
       } else if (error.request) {

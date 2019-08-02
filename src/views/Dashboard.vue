@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { signOut } from '../script/config/common';
+import { signOut } from '../script/config/common'
 import { navResource } from '../models/fake-data'
 export default {
   name: 'dashboard',
@@ -76,7 +76,7 @@ export default {
   },
   mounted () {
     // debugger
-    this._initNav();
+    this._initNav()
     console.log('mounted++++++')
   },
   methods: {
@@ -90,35 +90,35 @@ export default {
       this.$router.push(url)
     },
     handleCommand (command) {
-      console.log('command', command);
+      console.log('command', command)
       switch (command) {
         case 'signOut':
           signOut(this.$router)
-          break;
+          break
 
         default:
-          break;
+          break
       }
     },
     _initNav () {
-      let currentRoutePath = this.$router.currentRoute.path;
+      let currentRoutePath = this.$router.currentRoute.path
       for (let index = 0; index < (navResource || []).length; index++) {
-        const nav = navResource[index];
+        const nav = navResource[index]
         if (nav.path === currentRoutePath) {
-          this.activeMenu = nav.index;
-          break;
+          this.activeMenu = nav.index
+          break
         }
         for (let i = 0; i < (nav.children || []).length; i++) {
-          const item = nav.children[i];
+          const item = nav.children[i]
           if (item.path === currentRoutePath) {
-            this.activeMenu = item.index;
-            break;
+            this.activeMenu = item.index
+            break
           }
         }
       }
-      console.log(this.$router.currentRoute.path);
+      console.log(this.$router.currentRoute.path)
     }
-  },
+  }
 
 }
 </script>

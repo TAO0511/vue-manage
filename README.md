@@ -1,26 +1,21 @@
 # manage
 
-## Project setup
+## 项目先install对应的包
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### 开发环境下启动项目
 ```
-npm run serve
+npm start
 ```
 
-### Compiles and minifies for production
+### 编译打包压缩发布项目
 ```
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
+### 提示和修复文件
 ```
 npm run lint
 ```
