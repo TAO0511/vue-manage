@@ -1,15 +1,14 @@
 <template>
-  <div class="address-add">
+  <div class="form-add">
     <div class="form-container">
       <div class="form-header">
-        <el-button type="primary" @click="sure">保存</el-button>
         <el-button @click="cancel">取消</el-button>
+        <el-button type="primary" @click="sure">保存</el-button>
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
           <el-form-item label="联系人">
             <el-input v-model="form.name"></el-input>
-            <!-- <input v-model="form.name" v-autoFocus> -->
           </el-form-item>
           <el-form-item label="手机号码">
             <el-input v-model="form.phone"></el-input>
@@ -33,7 +32,8 @@
   </div>
 </template>
 <script>
-import { setItem, getItem } from '../../script/config/common'
+// import { setItem, getItem } from '../../script/config/common'
+import { address } from '../script/api/get-data'
 export default {
   name: 'AddressAdd',
   props: ['data'],
@@ -44,34 +44,34 @@ export default {
         phone: '',
         address: '',
         isDefault: false,
-        type: [],
+        type: '',
         date: new Date().getTime()
       }
     }
   },
   mounted () {
-    this.form = this.data || this.form
+    if (this.data && this.data._id) {
+      address.detail({ id: this.data._id }).then(res => {
+        console.log(res)
+        this.form = res
+      })
+    }
   },
   methods: {
     sure: function () {
-      let addressList = getItem('addressList') || []
-      if (this.form && this.form.id) {
-        let editIndex = ''
-        addressList.forEach((item, index) => {
-          if (item.id === this.form.id) {
-            editIndex = index
-          }
-        })
-        if (typeof (editIndex) === 'number') {
-          addressList.splice(editIndex, 1, this.form)
-        }
-      } else {
-        this.form.id = `address_${new Date().getTime()}`
-        addressList.push(this.form)
+      let req = address.add
+      if (this.form && this.form._id) {
+        req = address.update
       }
-      setItem('addressList', addressList)
-      this.$emit('sure')
-      this.$emit('cancel')
+      req(this.form).then(res => {
+        console.log('res+++++=', res)
+        this.$message({
+          message: `${this.form && this.form._id ? '修改' : '新增'}成功`,
+          type: 'success'
+        })
+        this.$emit('sure')
+        this.$emit('cancel')
+      })
     },
     cancel: function () {
       this.$emit('cancel')

@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Login from './views/Login.vue'
-import Dashboard from './views/Dashboard.vue'
+import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import Dashboard from '../views/Dashboard.vue'
 import { Message } from 'element-ui'
-import { resource } from './models/fake-data'
+import { resource } from '../models/fake-data'
 
 Vue.use(Router)
 
@@ -37,12 +37,32 @@ const routers = new Router({
           // route level code-splitting
           // this generates a separate chunk (about.[hash].js) for this route
           // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+          component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
         },
         {
           path: '/template',
           name: 'template',
-          component: () => import('./views/Template.vue')
+          component: () => import('../views/Template.vue')
+        },
+        {
+          path: '/category',
+          name: 'category',
+          component: () => import('../views/Category.vue')
+        },
+        {
+          path: '/item',
+          name: 'item',
+          component: () => import('../views/Item.vue')
+        },
+        {
+          path: '/hero',
+          name: 'hero',
+          component: () => import('../views/Hero.vue')
+        },
+        {
+          path: '/article',
+          name: 'article',
+          component: () => import('../views/Article.vue')
         },
         {
           path: '',

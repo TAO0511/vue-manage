@@ -66,3 +66,14 @@ body {
     padding: 20px;
   }
 }
+
+.display-flex {
+  display: flex;
+}
+
+.table-cell-img {
+  display: flex;
+  img {
+    height: 2rem;
+  }
+}

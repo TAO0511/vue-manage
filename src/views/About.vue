@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-import { emailSearch } from '@/script/api/get-data'
 export default {
   name: 'about',
   created () {
@@ -14,10 +13,6 @@ export default {
   methods: {
     getPhone () {
       console.log('getPhone')
-      emailSearch({ number: 1012002 })
-        .then(res => {
-          console.log('res+++++')
-        })
     }
   }
 }

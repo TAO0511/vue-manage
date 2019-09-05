@@ -63,19 +63,18 @@
 </template>
 
 <script>
-import AddressAdd from '../components/address/AddressAdd'
-import { getItem, setItem } from '../script/config/common'
+import AddressAdd from '../components/AddressAdd'
+import { address } from '../script/api/get-data'
 export default {
   name: 'templates',
   components: {
     AddressAdd
   },
   created () {
-    
+
   },
   mounted () {
     this.query()
-    console.log(this.$route)
   },
   data () {
     return {
@@ -99,7 +98,9 @@ export default {
       return this.showType === type
     },
     query () {
-      this.tableData = getItem('addressList')
+      address.query().then(res => {
+        this.tableData = res
+      })
     },
     handleSizeChange (val) {
       console.log(`每页 ${val} 条`)
@@ -115,11 +116,18 @@ export default {
       this.showType = 'add'
     },
     handleDelete (deleteItem) {
-      let addressList = (this.tableData || []).filter(item => {
-        return item.id !== deleteItem.id
+      this.$confirm(`确定删除地址【${deleteItem.name}】吗?`, '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        address.delete({ id: deleteItem._id }).then(res => {
+          console.log(res)
+          this.query()
+        })
+      }).catch(() => {
+        
       })
-      setItem('addressList', addressList)
-      this.query()
     }
   }
 }
