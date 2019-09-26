@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import filter from './script/filter'
 import directive from './script/directive'
 import instance from './script/config/http'
+import './style/common.scss'
 
 Vue.prototype.$http = instance
 
