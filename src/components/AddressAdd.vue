@@ -2,28 +2,28 @@
   <div class="form-add">
     <div class="form-container">
       <div class="form-header">
-        <el-button @click="cancel">取消</el-button>
-        <el-button type="primary" @click="sure">保存</el-button>
+        <el-button @click="cancel">{{$t('cancel')}}</el-button>
+        <el-button type="primary" @click="sure">{{$t('save')}}</el-button>
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="联系人">
+          <el-form-item :label="$t('contactPerson')">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
-          <el-form-item label="手机号码">
+          <el-form-item :label="$t('phoneNo')">
             <el-input v-model="form.phone"></el-input>
           </el-form-item>
-          <el-form-item label="地址">
+          <el-form-item :label="$t('address')">
             <el-input type="textarea" v-model="form.address"></el-input>
           </el-form-item>
-          <el-form-item label="标签">
+          <el-form-item :label="$t('tag')">
             <el-radio-group v-model="form.type">
-              <el-radio :label="1" name="type">公司</el-radio>
-              <el-radio :label="2" name="type">家</el-radio>
-              <el-radio :label="3" name="type">学校</el-radio>
+              <el-radio :label="1" name="type">{{$t('company')}}</el-radio>
+              <el-radio :label="2" name="type">{{$t('home')}}</el-radio>
+              <el-radio :label="3" name="type">{{$t('school')}}</el-radio>
             </el-radio-group>
           </el-form-item>
-          <el-form-item label="设为默认地址">
+          <el-form-item :label="$t('setDefaultAddress')">
             <el-switch v-model="form.isDefault"></el-switch>
           </el-form-item>
         </el-form>

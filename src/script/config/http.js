@@ -2,7 +2,7 @@
  * @Author: kenter.zheng 
  * @Date: 2019-08-07 11:19:22 
  * @Last Modified by: kenter.zheng
- * @Last Modified time: 2019-08-31 10:12:31
+ * @Last Modified time: 2019-12-03 18:40:40
  */
 import axios from 'axios'
 import { environment } from '@/models/environment'
@@ -35,6 +35,7 @@ instance.interceptors.response.use(function (response) {
 })
 
 const request = (routeJson, params) => {
+  console.log('routeJson', routeJson);
   let method = routeJson.method
   let url = routeJson.url
   let config = {
@@ -47,6 +48,7 @@ const request = (routeJson, params) => {
   } else {
     config = { ...config, data: params }
   }
+  
 
   return instance.request(config).then(response => {
     if (response.status === 200) {
@@ -62,6 +64,7 @@ const request = (routeJson, params) => {
     } else {
       console.log('Error', error.message)
     }
+    Promise.reject(error)
     console.log(error.config)
   })
 }

@@ -16,7 +16,7 @@
         </el-col>
         </el-row>-->
         <el-row :gutter="20">
-          <el-button type="primary" class="pull-left" @click="add()">新增</el-button>
+          <el-button type="primary" class="pull-left" @click="add()">{{$t('add')}}</el-button>
           <el-col :span="6">
             <el-input placeholder="请输入内容" v-model="search" class="input-with-select">
               <el-button slot="append" icon="el-icon-search" @click="query()"></el-button>
@@ -26,22 +26,22 @@
       </div>
       <div class="table-list">
         <el-table :data="tableData" stripe style="width: 100%">
-          <el-table-column label="日期" width="180">
+          <el-table-column :label="$t('date')" width="180">
             <template slot-scope="scope">{{ scope.row.date | date }}</template>
           </el-table-column>
-          <el-table-column prop="name" label="联系人" width="180"></el-table-column>
-          <el-table-column prop="phone" label="联系方式" min-width="180"></el-table-column>
-          <el-table-column prop="address" label="地址" min-width="300" :show-overflow-tooltip="true"></el-table-column>
-          <el-table-column label="标签" width="180">
+          <el-table-column prop="name" :label="$t('contactPerson')" width="180"></el-table-column>
+          <el-table-column prop="phone" :label="$t('phoneNo')" min-width="180"></el-table-column>
+          <el-table-column prop="address" :label="$t('address')" min-width="300" :show-overflow-tooltip="true"></el-table-column>
+          <el-table-column :label="$t('tag')" width="180">
             <template slot-scope="scope">{{scope.row.type | addressTag}}</template>
           </el-table-column>
-          <el-table-column label="是否默认地址" width="120">
+          <el-table-column :label="$t('isDefaultAddress')" width="120">
             <template slot-scope="scope">{{scope.row.isDefault ? '是' : '否'}}</template>
           </el-table-column>
-          <el-table-column fixed="right" label="操作" width="200">
+          <el-table-column fixed="right" :label="$t('operation')" width="200">
             <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-              <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+              <el-button size="mini" @click="handleEdit(scope.row)">{{$t('edit')}}</el-button>
+              <el-button size="mini" type="danger" @click="handleDelete(scope.row)">{{$t('delete')}}</el-button>
             </template>
           </el-table-column>
         </el-table>

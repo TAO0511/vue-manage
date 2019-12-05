@@ -2,27 +2,27 @@
   <div class="form-add">
     <div class="form-container">
       <div class="form-header">
-        <el-button @click="cancel">取消</el-button>
-        <el-button type="primary" @click="sure">保存</el-button>
+        <el-button @click="cancel">{{$t('cancel')}}</el-button>
+        <el-button type="primary" @click="sure">{{$t('save')}}</el-button>
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
           <el-tabs value="basic" type="border-card">
-            <el-tab-pane label="基础信息" name="basic">
-              <el-form-item label="名称">
+            <el-tab-pane :label="$t('basicInfo')" name="basic">
+              <el-form-item :label="$t('name')">
                 <el-input v-model="form.name"></el-input>
               </el-form-item>
-              <el-form-item label="称号">
+              <el-form-item :label="$t('designation')">
                 <el-input v-model="form.title"></el-input>
               </el-form-item>
-              <el-form-item label="头像">
+              <el-form-item :label="$t('avatar')">
                 <Upload :data.sync="form.avatar"></Upload>
                 {{form.avatar}}
               </el-form-item>
-              <el-form-item label="Banner">
+              <el-form-item :label="$t('banner')">
                 <Upload :data.sync="form.banner"></Upload>
               </el-form-item>
-              <el-form-item label="类型">
+              <el-form-item :label="$t('categories')">
                 <el-select v-model="form.categories" multiple>
                   <el-option
                     v-for="item of categories"
@@ -32,20 +32,20 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="难度">
+              <el-form-item :label="$t('difficult')">
                 <el-rate style="margin-top:0.6rem" :max="9" v-model="form.scores.difficult"></el-rate>
               </el-form-item>
-              <el-form-item label="技能">
+              <el-form-item :label="$t('skills')">
                 <el-rate style="margin-top:0.6rem" :max="9" v-model="form.scores.skills"></el-rate>
               </el-form-item>
-              <el-form-item label="攻击">
+              <el-form-item :label="$t('attack')">
                 <el-rate style="margin-top:0.6rem" :max="9" v-model="form.scores.attack"></el-rate>
               </el-form-item>
-              <el-form-item label="生存">
+              <el-form-item :label="$t('survive')">
                 <el-rate style="margin-top:0.6rem" :max="9" v-model="form.scores.survive"></el-rate>
               </el-form-item>
 
-              <el-form-item label="顺风出装">
+              <el-form-item :label="$t('survive')">
                 <el-select v-model="form.items1" multiple>
                   <el-option
                     v-for="item of items"
@@ -55,7 +55,7 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="逆风出装">
+              <el-form-item :label="$t('upwind')">
                 <el-select v-model="form.items2" multiple>
                   <el-option
                     v-for="item of items"
@@ -65,54 +65,60 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
-              <el-form-item label="使用技巧">
+              <el-form-item :label="$t('usageTips')">
                 <el-input type="textarea" v-model="form.usageTips"></el-input>
               </el-form-item>
-              <el-form-item label="对抗技巧">
+              <el-form-item :label="$t('battleTips')">
                 <el-input type="textarea" v-model="form.battleTips"></el-input>
               </el-form-item>
-              <el-form-item label="团战思路">
+              <el-form-item l:label="$t('skills')">
                 <el-input type="textarea" v-model="form.teamTips"></el-input>
               </el-form-item>
             </el-tab-pane>
-            <el-tab-pane label="技能" name="skills">
+            <el-tab-pane :label="$t('upwind')" name="skills">
               <el-button size="small" @click="form.skills.push({})">
-                <i class="el-icon-plus"></i> 添加技能
+                <i class="el-icon-plus"></i>
+                {{$t('addSkill')}}
               </el-button>
               <el-row type="flex" style="flex-wrap: wrap">
                 <el-col :md="12" v-for="(item, i) in form.skills" :key="i">
-                  <el-form-item label="名称">
+                  <el-form-item :label="$t('name')">
                     <el-input v-model="item.name"></el-input>
                   </el-form-item>
-                  <el-form-item label="图标">
+                  <el-form-item :label="$t('icon')">
                     <Upload :data.sync="item.icon"></Upload>
                   </el-form-item>
-                  <el-form-item label="冷却值">
+                  <el-form-item :label="$t('delay')">
                     <el-input v-model="item.delay"></el-input>
                   </el-form-item>
-                  <el-form-item label="消耗">
+                  <el-form-item :label="$t('cost')">
                     <el-input v-model="item.cost"></el-input>
                   </el-form-item>
-                  <el-form-item label="描述">
+                  <el-form-item :label="$t('description')">
                     <el-input v-model="item.description" type="textarea"></el-input>
                   </el-form-item>
-                  <el-form-item label="小提示">
+                  <el-form-item :label="$t('smallTips')">
                     <el-input v-model="item.tips" type="textarea"></el-input>
                   </el-form-item>
                   <el-form-item>
-                    <el-button size="small" type="danger" @click="form.skills.splice(i, 1)">删除</el-button>
+                    <el-button
+                      size="small"
+                      type="danger"
+                      @click="form.skills.splice(i, 1)"
+                    >{{$t('delete')}}</el-button>
                   </el-form-item>
                 </el-col>
               </el-row>
             </el-tab-pane>
 
-            <el-tab-pane label="最佳搭档" name="partners">
+            <el-tab-pane :label="$t('goodPartners')" name="partners">
               <el-button size="small" @click="form.partners.push({})">
-                <i class="el-icon-plus"></i> 添加英雄
+                <i class="el-icon-plus"></i>
+                {{$t('addHero')}}
               </el-button>
               <el-row type="flex" style="flex-wrap: wrap">
                 <el-col :md="12" v-for="(item, i) in form.partners" :key="i">
-                  <el-form-item label="英雄">
+                  <el-form-item :label="$t('hero')">
                     <el-select filterable v-model="item.hero">
                       <el-option
                         v-for="hero in heroes"
@@ -122,11 +128,15 @@
                       ></el-option>
                     </el-select>
                   </el-form-item>
-                  <el-form-item label="描述">
+                  <el-form-item :label="$t('description')">
                     <el-input v-model="item.description" type="textarea"></el-input>
                   </el-form-item>
                   <el-form-item>
-                    <el-button size="small" type="danger" @click="form.partners.splice(i, 1)">删除</el-button>
+                    <el-button
+                      size="small"
+                      type="danger"
+                      @click="form.partners.splice(i, 1)"
+                    >{{$t('delete')}}</el-button>
                   </el-form-item>
                 </el-col>
               </el-row>

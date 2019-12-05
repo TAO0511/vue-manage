@@ -3,7 +3,7 @@
     <div v-if="isShowType('list')">
       <div class="filter-container">
         <el-row :gutter="20">
-          <el-button type="primary" class="pull-left" @click="add()">新增</el-button>
+          <el-button type="primary" class="pull-left" @click="add()">{{$t('add')}}</el-button>
         </el-row>
       </div>
       <div class="table-list">
@@ -15,16 +15,16 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="名称"></el-table-column>
-          <el-table-column label="类型">
+          <el-table-column prop="name" :label="$t('name')"></el-table-column>
+          <el-table-column :label="$t('categories')">
             <template slot-scope="scope">
               <div>{{getCategories(scope.row)}}</div>
             </template>
           </el-table-column>
-          <el-table-column fixed="right" label="操作" width="200">
+          <el-table-column fixed="right" :label="$t('operation')" width="200">
             <template slot-scope="scope">
-              <el-button size="mini" @click="handleEdit(scope.row)">编辑</el-button>
-              <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+              <el-button size="mini" @click="handleEdit(scope.row)">{{$t('edit')}}</el-button>
+              <el-button size="mini" type="danger" @click="handleDelete(scope.row)">{{$t('delete')}}</el-button>
             </template>
           </el-table-column>
         </el-table>

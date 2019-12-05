@@ -1,4 +1,4 @@
-import Vue from 'vue'
+import Vue from 'vue' 
 import App from './App.vue'
 import router from './script/router'
 import store from './script/store'
@@ -8,6 +8,7 @@ import filter from './script/filter'
 import directive from './script/directive'
 import instance from './script/config/http'
 import './style/common.scss'
+import i18n from './script/i18n'
 
 Vue.prototype.$http = instance
 
@@ -20,13 +21,13 @@ Object.keys(filter).forEach(key => {
 Object.keys(directive).forEach(key => {
   Vue.directive(key, directive[key])
 })
-
+Vue.use(i18n)
 Vue.use(ElementUI)
-
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

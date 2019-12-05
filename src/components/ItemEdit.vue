@@ -7,10 +7,10 @@
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="物品名称">
+          <el-form-item :label="$t('goodsName')">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
-          <el-form-item label="图标">
+          <el-form-item :label="$t('icon')">
             <Upload :data.sync="form.icon"></Upload>
           </el-form-item>
         </el-form>

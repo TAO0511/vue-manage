@@ -2,15 +2,15 @@
   <div class="form-add">
     <div class="form-container">
       <div class="form-header">
-        <el-button @click="cancel">取消</el-button>
-        <el-button type="primary" @click="sure">保存</el-button>
+        <el-button @click="cancel">{{$t('cancel')}}</el-button>
+        <el-button type="primary" @click="sure">{{$t('save')}}</el-button>
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="标题">
+          <el-form-item :label="$t('title')">
             <el-input v-model="form.title"></el-input>
           </el-form-item>
-          <el-form-item label="内容">
+          <el-form-item :label="$t('content')">
             <vue-editor v-model="form.content" />
           </el-form-item>
         </el-form>

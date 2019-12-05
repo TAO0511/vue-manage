@@ -8,6 +8,7 @@
           <el-dropdown @command="handleCommand">
             <i class="el-icon-setting header-icon"></i>
             <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="updateI18n">切换成{{getI18nName}}</el-dropdown-item>
               <el-dropdown-item command="updatePassword">修改密码</el-dropdown-item>
               <el-dropdown-item command="signOut">安全退出</el-dropdown-item>
             </el-dropdown-menu>
@@ -55,7 +56,7 @@
 </template>
 
 <script>
-import { signOut } from '../script/config/common'
+import { signOut, setItem, getItem } from '../script/config/common'
 import { navResource } from '../models/fake-data'
 export default {
   name: 'dashboard',
@@ -79,6 +80,12 @@ export default {
     this._initNav()
     console.log('mounted++++++')
   },
+  computed: {
+    getI18nName () {
+      let result = this.$i18n.locale === 'zh' ? this.$t('tw') : this.$t('zh')
+      return result
+    }
+  },
   methods: {
     handleOpen (key, keyPath) {
       console.log(key, keyPath)
@@ -94,6 +101,9 @@ export default {
       switch (command) {
         case 'signOut':
           signOut(this.$router)
+          break
+        case 'updateI18n':
+          this.updateI18n()
           break
 
         default:
@@ -117,6 +127,17 @@ export default {
         }
       }
       console.log(this.$router.currentRoute.path)
+    },
+    updateI18n () {
+      debugger
+      let lang = getItem('lang') || 'zh'
+      if (lang === 'tw') {
+        lang = 'zh'
+      } else {
+        lang = 'tw'
+      }
+      this.$i18n.locale = lang
+      setItem('lang', lang)
     }
   }
 

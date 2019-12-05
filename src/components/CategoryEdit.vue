@@ -2,12 +2,12 @@
   <div class="form-add">
     <div class="form-container">
       <div class="form-header">
-        <el-button @click="cancel">取消</el-button>
-        <el-button type="primary" @click="sure">保存</el-button>
+        <el-button @click="cancel">{{$t('cancel')}}</el-button>
+        <el-button type="primary" @click="sure">{{$t('save')}}</el-button>
       </div>
       <div class="form-content">
         <el-form ref="form" :model="form" label-width="100px">
-          <el-form-item label="上级分类">
+          <el-form-item :label="$t('subClassify')">
             <el-select v-model="form.parent">
               <el-option
                 v-for="item in parents"
@@ -17,7 +17,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="分类名称">
+          <el-form-item :label="$t('classifyName')">
             <el-input v-model="form.name"></el-input>
           </el-form-item>
         </el-form>

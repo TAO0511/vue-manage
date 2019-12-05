@@ -1,4 +1,4 @@
-import http from '@/script/config/http'
+import http from '../config/http'
 import routeMap from '@/models/route-map'
 export const address = {
   add: (params) => {
@@ -94,6 +94,7 @@ export const article = {
   },
 
   query: (params) => {
+    console.log('http', http)
     return http.request(routeMap.article.query, params)
   },
 
